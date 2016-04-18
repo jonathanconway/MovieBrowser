@@ -4,7 +4,7 @@ import Movie  from "../components/Movie";
 export default class Movies extends Component {
 
   static propTypes = {
-    movies: PropTypes.object.isRequired,
+    movies: PropTypes.array.isRequired,
   }
 
   render() {
@@ -14,7 +14,7 @@ export default class Movies extends Component {
         <tbody>
             {
               movies.map(movie =>
-                <Movie movie={ movie } />
+                <Movie movie={ movie } key={ movie.title } />
               )
             }
         </tbody>

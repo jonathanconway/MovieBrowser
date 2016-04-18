@@ -1,18 +1,28 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
+import { connectToStores } from "fluxible-addons-react";
 import GenreSelect  from "../components/GenreSelect";
 import Movies  from "../components/Movies";
 
+@connectToStores(["MoviesStore"], context => {
+  const movies = context.getStore("MoviesStore").getMovies();
+  const genres = context.getStore("MoviesStore").getGenres();
+  return {
+    movies: movies,
+    genres: genres
+  };
+})
 export default class HomePage extends Component {
 
+  static propTypes = {
+    movies: PropTypes.array.isRequired
+  }
+
   render() {
-    const movies = [
-      {"rating": 8.8, "genres": ["Action", "Adventure", "Fantasy", "Sci-Fi"], "rated": "PG", "language": ["English"], "title": "Star Wars"},
-      {"rating": 8.1, "genres": ["Animation", "Adventure", "Comedy", "Family"], "rated": "G", "language": ["English"], "title": "Finding Nemo"}
-    ];
+    const { movies, genres } = this.props;
 
     return (
       <div>
-        <GenreSelect />
+        <GenreSelect genres={ genres } />
         <br /> <br />
         <Movies movies={ movies } />
       </div>

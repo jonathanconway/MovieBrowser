@@ -7,6 +7,7 @@ import routes from "./routes";
 import Root from "./containers/Root";
 
 import FeaturedStore from "./stores/FeaturedStore";
+import MoviesStore from "./stores/MoviesStore";
 import HtmlHeadStore from "./stores/HtmlHeadStore";
 import IntlStore from "./stores/IntlStore";
 import PhotoStore from "./stores/PhotoStore";
@@ -23,6 +24,7 @@ app.registerStore(AppRouteStore);
 
 // Register app-specific stores
 app.registerStore(FeaturedStore);
+app.registerStore(MoviesStore);
 app.registerStore(HtmlHeadStore);
 app.registerStore(IntlStore);
 app.registerStore(PhotoStore);
