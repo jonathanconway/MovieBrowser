@@ -5,12 +5,17 @@ export default class MoviesStore extends BaseStore {
 
   static storeName = "MoviesStore"
 
+  static handlers = {
+    [Actions.LOAD_MOVIES_SUCCESS]: "handleLoadSuccess"
+  }
+
   constructor(dispatcher) {
     super(dispatcher);
-    this.movies = [
-      {"rating": 8.8, "genres": ["Action", "Adventure", "Fantasy", "Sci-Fi"], "rated": "PG", "language": ["English"], "title": "Star Wars"},
-      {"rating": 8.1, "genres": ["Animation", "Adventure", "Comedy", "Family"], "rated": "G", "language": ["English"], "title": "Finding Nemo"}
-    ];
+  }
+
+  handleLoadSuccess({ genre, movies }) {
+    this.movies = movies;
+    this.emitChange();
   }
 
   getMovies() {
@@ -18,7 +23,7 @@ export default class MoviesStore extends BaseStore {
   }
 
   getGenres() {
-    if (this.movies.length) {
+    if (this.movies && this.movies.length) {
       return this.movies.reduce(function (a, b) {
         return a.genres.concat(
           b.genres.filter(function (bb) {

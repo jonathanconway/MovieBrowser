@@ -52,6 +52,7 @@ export default function(callback) {
   // and register its services
 
   const fetchr = app.getPlugin("FetchrPlugin");
+  fetchr.registerService(require("./services/movies"));
   fetchr.registerService(require("./services/photos"));
   fetchr.registerService(require("./services/photo"));
 

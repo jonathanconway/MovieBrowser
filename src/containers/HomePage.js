@@ -7,8 +7,8 @@ import Movies  from "../components/Movies";
   const movies = context.getStore("MoviesStore").getMovies();
   const genres = context.getStore("MoviesStore").getGenres();
   return {
-    movies: movies,
-    genres: genres
+    movies: movies || [],
+    genres: genres || []
   };
 })
 export default class HomePage extends Component {

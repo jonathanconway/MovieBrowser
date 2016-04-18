@@ -12,7 +12,8 @@ export default {
   home: {
     path: "/",
     method: "get",
-    handler: HomePage
+    handler: HomePage,
+    action: InitActions.homePage
   },
 
   featured: {
