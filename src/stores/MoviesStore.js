@@ -14,11 +14,21 @@ export default class MoviesStore extends BaseStore {
   }
 
   handleLoadSuccess({ genre, movies }) {
+    this.genre = genre;
     this.movies = movies;
     this.emitChange();
   }
 
   getMovies() {
+    return this.movies;
+  }
+
+  getMoviesByGenre() {
+    if (this.genre) {
+      return this.movies.filter((movie) => {
+        return movie.genres.indexOf(this.genre) > -1;
+      });      
+    }
     return this.movies;
   }
 

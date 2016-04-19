@@ -3,19 +3,16 @@ import React, { PropTypes, Component } from "react";
 export default class GenreSelect extends Component {
 
   static propTypes = {
-    genres: PropTypes.array.isRequired
-  }
-
-  handleGenreChange(e) {
-    window.location.hash = encodeURIComponent(e.target.value);
+    genres: PropTypes.array.isRequired,
+    onChange: PropTypes.func
   }
 
   render() {
-    const { genres } = this.props;
+    const { genres, onChange } = this.props;
     return (
       <select
         className="GenreSelect"
-        onChange={ this.handleGenreChange }>
+        onChange={ this.props.onChange }>
         {
           genres.map(genre =>
             <option value={ genre } key={ genre }>{ genre }</option>

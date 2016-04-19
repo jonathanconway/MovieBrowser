@@ -2,9 +2,10 @@ import React, { Component, PropTypes } from "react";
 import { connectToStores } from "fluxible-addons-react";
 import GenreSelect  from "../components/GenreSelect";
 import Movies  from "../components/Movies";
+import { loadMovies } from "../actions/MoviesActionCreators";
 
 @connectToStores(["MoviesStore"], context => {
-  const movies = context.getStore("MoviesStore").getMovies();
+  const movies = context.getStore("MoviesStore").getMoviesByGenre();
   const genres = context.getStore("MoviesStore").getGenres();
   return {
     movies: movies || [],
@@ -17,12 +18,20 @@ export default class HomePage extends Component {
     movies: PropTypes.array.isRequired
   }
 
+  static contextTypes = {
+    executeAction: PropTypes.func.isRequired
+  }
+
+  handleGenreSelectChange(e) {
+    this.context.executeAction(loadMovies, { genre: e.target.value });
+  }
+
   render() {
     const { movies, genres } = this.props;
 
     return (
       <div>
-        <GenreSelect genres={ genres } />
+        <GenreSelect genres={ genres } onChange={ this.handleGenreSelectChange.bind(this) } />
         <br /> <br />
         <Movies movies={ movies } />
       </div>
