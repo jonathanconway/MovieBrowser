@@ -1,5 +1,11 @@
 @import 'constants/colors';
 
+.LocaleSwitcher {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+}
+
 .LocaleSwitcher-link {
   display: inline-block;
   padding: .25rem 0.5rem;
