@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import { connectToStores } from "fluxible-addons-react";
-import GenreSelect  from "../components/GenreSelect";
+import GenreField  from "../components/GenreField";
 import Movies  from "../components/Movies";
 import { loadMovies } from "../actions/MoviesActionCreators";
 
@@ -31,7 +31,7 @@ export default class HomePage extends Component {
 
     return (
       <div>
-        <GenreSelect genres={ genres } onChange={ this.handleGenreSelectChange.bind(this) } />
+        <GenreField genres={ genres } onChange={ this.handleGenreSelectChange.bind(this) } />
         <br /> <br />
         <Movies movies={ movies } />
       </div>

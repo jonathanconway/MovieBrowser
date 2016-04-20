@@ -10,9 +10,7 @@ export default class GenreSelect extends Component {
   render() {
     const { genres, onChange } = this.props;
     return (
-      <select
-        className="GenreSelect"
-        onChange={ this.props.onChange }>
+      <select onChange={ this.props.onChange }>
         <option value=""></option>
         {
           genres.map(genre =>

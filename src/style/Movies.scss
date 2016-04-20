@@ -1,0 +1,7 @@
+.Movies {
+  width: 100%;
+
+  .Movies-td:not(:last-child) {
+    padding-right: 2%;
+  }
+}

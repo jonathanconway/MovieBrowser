@@ -1,9 +1,5 @@
 import React, { PropTypes, Component } from "react";
 
-if (process.env.BROWSER) {
-  require("../style/Movie.scss");
-}
-
 export default class Movie extends Component {
 
   static propTypes = {
@@ -14,8 +10,8 @@ export default class Movie extends Component {
     const { movie } = this.props;
     return (
       <tr className="Movie">
-        <td>{ movie.title }</td>
-        <td>{ movie.genres.join(', ') }</td>
+        <td className="Movies-td">{ movie.title }</td>
+        <td className="Movies-td">{ movie.genres.join(', ') }</td>
       </tr>
     );
   }
