@@ -1,7 +1,17 @@
-.Movies {
+@import 'constants/colors';
+
+.MoviesCollection {
   width: 100%;
 
-  .Movies-td:not(:last-child) {
-    padding-right: 2%;
+  .Movie-tr:nth-child(odd) .Movie-td {
+    background-color: $color-background;
+  }
+
+  .Movie-td {
+    padding: 2%;
+
+    &:first-child {
+      width: 50%;
+    }
   }
 }

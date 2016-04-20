@@ -9,9 +9,9 @@ export default class Movie extends Component {
   render() {
     const { movie } = this.props;
     return (
-      <tr className="Movie">
-        <td className="Movies-td">{ movie.title }</td>
-        <td className="Movies-td">{ movie.genres.join(', ') }</td>
+      <tr className="Movie-tr">
+        <td className="Movie-td">{ movie.title }</td>
+        <td className="Movie-td">{ movie.genres.join(', ') }</td>
       </tr>
     );
   }
