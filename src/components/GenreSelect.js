@@ -13,6 +13,7 @@ export default class GenreSelect extends Component {
       <select
         className="GenreSelect"
         onChange={ this.props.onChange }>
+        <option value=""></option>
         {
           genres.map(genre =>
             <option value={ genre } key={ genre }>{ genre }</option>
