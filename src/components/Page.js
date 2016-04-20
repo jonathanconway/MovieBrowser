@@ -10,6 +10,10 @@ export default class Page extends Component {
     return (
       <div className="Page">
 
+        <div className="Page-header">
+          <h1 className="Page-header-title">MovieBrowser</h1>
+        </div>
+
         <div className="Page-body">
           { this.props.children }
         </div>

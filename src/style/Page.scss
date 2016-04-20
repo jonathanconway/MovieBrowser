@@ -20,3 +20,14 @@
     padding: 2rem;
   }
 }
+
+.Page-header {
+  text-align: center;
+
+  .Page-header-title {
+    display: inline-block;
+    background: url(/assets/favicon.png) center left/40px no-repeat;
+    padding-left: 50px;
+    font-family: 'Walter';
+  }
+}
