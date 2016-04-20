@@ -1,21 +1,21 @@
 {
-  "name": "isomorphic500",
-  "version": "2.0.0",
-  "description": "Example of an isomorphic React app using fluxible and webpack",
+  "name": "MovieBrowser",
+  "version": "1.0.0",
+  "description": "Browse a list of movies and filter by genre",
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=production node index",
-    "dev": "NODE_ENV=development DEBUG=isomorphic500 nodemon index.js",
-    "dev-windows": "SET NODE_ENV=development&&SET DEBUG=isomorphic500&&nodemon index.js",
-    "prod": "NODE_ENV=production PORT=8080 DEBUG=isomorphic500 node index",
-    "prod-windows": "SET NODE_ENV=production&&SET PORT=8080&&SET DEBUG=isomorphic500&&node index",
+    "dev": "NODE_ENV=development DEBUG=MovieBrowser nodemon index.js",
+    "dev-windows": "SET NODE_ENV=development&&SET DEBUG=MovieBrowser&&nodemon index.js",
+    "prod": "NODE_ENV=production PORT=8080 DEBUG=MovieBrowser node index",
+    "prod-windows": "SET NODE_ENV=production&&SET PORT=8080&&SET DEBUG=MovieBrowser&&node index",
     "build": "webpack --stats --config ./webpack/prod.config.js",
     "postinstall": "npm run build",
     "lint": "eslint index.js src webpack config"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gpbl/isomorphic-react-template.git"
+    "url": "https://github.com/jonathanconway/qantas-assure-test.git"
   },
   "keywords": [
     "fluxible",
@@ -23,15 +23,15 @@
     "react",
     "flux"
   ],
-  "author": "gpbl <io@gpbl.org> (https://github.com/gpbl)",
+  "author": "jonathanconway <io@jonathanconway.org> (https://github.com/jonathanconway)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gpbl/isomorphic-react-template/issues"
+    "url": "https://github.com/jonathanconway/MovieBrowser/issues"
   },
   "engines": {
     "node": "0.12.x"
   },
-  "homepage": "https://github.com/gpbl/isomorphic-react-template",
+  "homepage": "https://github.com/jonathanconway/MovieBrowser",
   "dependencies": {
     "autoprefixer-loader": "3.1.0",
     "babel": "5.8.23",

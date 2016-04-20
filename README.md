@@ -1,30 +1,27 @@
-# isomorphic500
+# MovieBrowser
 
-[Isomorphic500](https://isomorphic500.herokuapp.com) is a small isomorphic ([universal](https://medium.com/@mjackson/universal-javascript-4761051b7ae9)) web application featuring photos from [500px](http://500px.com).
+[MovieBrowser](https://MovieBrowser.herokuapp.com) is a small isomorphic ([universal](https://medium.com/@mjackson/universal-javascript-4761051b7ae9)) web application featuring a browsable list of movies.
 
 It is built on [express](http://expressjs.com) using [React](https://facebook.github.io/react) and [Flux](https://facebook.github.io/flux) with [yahoo/fluxible](http://fluxible.io). It is developed with [webpack](http://webpack.github.io) and [react-hot-loader](http://gaearon.github.io/react-hot-loader/) and written with [babeljs](http://babeljs.io) with the help of [eslint](http://eslint.org). It supports multiple languages using [react-intl](http://formatjs.io/react/).
 
-<a href="https://isomorphic500.herokuapp.com"><img src="https://cloud.githubusercontent.com/assets/120693/7737327/95f3de1c-ff4a-11e4-86fb-e9d3cabcdedb.png" width="700"></a>
+<a href="https://jonathanconway-moviebrowser.herokuapp.com"><img src="https://cloud.githubusercontent.com/assets/120693/7737327/95f3de1c-ff4a-11e4-86fb-e9d3cabcdedb.png" width="700"></a>
 
-[![Build Status](https://travis-ci.org/gpbl/isomorphic500.svg?branch=master)](https://travis-ci.org/gpbl/isomorphic500) <img src="https://david-dm.org/gpbl/isomorphic500.svg">
+[![Build Status](https://travis-ci.org/jonathanconway/MovieBrowser.svg?branch=master)](https://travis-ci.org/jonathanconway/MovieBrowser) <img src="https://david-dm.org/jonathanconway/MovieBrowser.svg">
 
-The intent of this project is to solidify my experience with these technologies and perhaps to inspire other developers in their journey with React and Flux. It works also as example of a javascript development environment with all the cool recent stuff :-)
+This project is based on the [Isomorphic500](https://github.com/gpbl/isomorphic500) demo. The intent is to demonstrate my experience/competency with refactoring and modifying React and Flux code.
 
-- see the demo on [isomorphic500.herokuapp.com](https://isomorphic500.herokuapp.com) (with source maps!)
+- see the demo on [MovieBrowser.herokuapp.com](https://MovieBrowser.herokuapp.com) (with source maps!)
 - clone this repo and run the server to confirm it is actually working
 - edit a react component or a css style, and see the updated app as you save your changes!
 - read on for some technical details
-
-**Get help**
-Join the [gitter chat](https://gitter.im/gpbl/isomorphic500?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) or the [#isomorphic500](https://reactiflux.slack.com/archives/isomorphic500) on [reactiflux](http://www.reactiflux.com) :-)
 
 **Clone this repo**
 
 **Note** This app has been tested on node 4
 
 ```
-git clone https://github.com/gpbl/isomorphic500.git
-cd isomorphic500
+git clone https://github.com/jonathanconway/MovieBrowser.git
+cd MovieBrowser
 npm install
 ```
 
@@ -55,8 +52,6 @@ then open [localhost:8080](http://localhost:8080).
   * [Async data](#async-data)
   * [Router](#router)
   * [Stores](#stores)
-    * [Resource stores](#resource-stores)
-    * [List stores](#list-stores)
     * [The HtmlHeadStore](#the-htmlheadstore)
 * [Internationalization (i18n)](#internationalization-i18n)
   * [How the user’s locale is detected](#how-the-user’s-locale-is-detected)
@@ -103,7 +98,6 @@ then open [localhost:8080](http://localhost:8080).
 │   ├── stores          # Fluxible stores
 │   ├── style           # Contains the Sass files
 │   └── utils         
-│       ├── APIUtils.js            # Wrapper to superagent for communicating with 500px API
 │       ├── CookieUtils.js         # Utility to write/read cookies 
 │       ├── IntlComponents.js      # Exports wrapped react-intl components
 │       ├── IntlUtils.js           # Utilities to load `Intl` and locale-data
@@ -112,6 +106,7 @@ then open [localhost:8080](http://localhost:8080).
 │       └── trackPageView.js       # Track a page view with google analitics
 ├── static              
 │   ├── assets         # Static files
+│   ├── json           # JSON data file (in future, could utilise a web-service rather than JSON)
 │   └── dist           # Output files for webpack on production
 └── webpack
     ├── dev.config.js  # Webpack config for development
@@ -132,7 +127,7 @@ The [src/app](src/app) file is the core of the Fluxible application:
 ### Async data
 
 I used [Fetchr](https://github.com/yahoo/fetchr) and [fluxible-plugin-fetchr](https://github.com/yahoo/fluxible-plugin-fetchr).
-[Fetchr services](src/services) run only on server and send [superagent](http://visionmedia.github.com/superagent) requests to 500px.
+[Fetchr services](src/services) run only on server and utilise data from a hard-coded JSON file.
 
 ### Router
 
@@ -140,27 +135,19 @@ This app uses [fluxible-router](https://github.com/yahoo/fluxible-router) for ro
 
 ### Stores
 
-Instead of directly listening to stores, components use fluxible's `@connectToStores` decorator: a store state is passed to components as prop. See for example the [PhotoPage](src/containers/PhotoPage.js) or the [FeaturedPage](src/containers/FeaturedPage.js).
+Instead of directly listening to stores, components use fluxible's `@connectToStores` decorator: a store state is passed to components as prop. See the [HomePage](src/containers/HomePage.js).
 
-`connectToStore` can also "consume" store data without actually listening to any store. This is the case of [NavBar](src/components/NavBar.js) or [LocaleSwitcher](src/components/LocaleSwitcher.js).
-
-#### Resource stores
-
-While REST APIs usually return collections as arrays, a resource store keeps items as big object – like the [PhotoStore](src/stores/PhotoStore.js). This simplifies the progressive resource updates that may happen during the app’s life.
-
-#### List stores
-
-A list store keeps references to a resource store, as the [FeaturedStore](src/stores/FeaturedStore.js) holds the ids of the photos in [PhotoStore](src/stores/PhotoStore.js).
+`connectToStore` can also "consume" store data without actually listening to any store. This is the case with [LocaleSwitcher](src/components/LocaleSwitcher.js).
 
 #### The HtmlHeadStore
 
 The [HtmlHeadStore](src/stores/HtmlHeadStore.js) is a special store used to set the `<head>` meta-tags in the `Html` component, during server-side rendering. It is also listened by the `Application` component to change the browser's `document.title`.
 
-This store listens to route actions and set its content according to the current route. It also get data from other stores (e.g. the photo's title from the `PhotoStore`), or the localized messages from the `IntlStore`.
+This store listens to route actions and set its content according to the current route. It can also get data from other stores or the localized messages from the `IntlStore`.
 
 ## Internationalization (i18n)
 
-To give an example on how to implement i18n in a React application, isomorphic500 supports English, [Italian](https://www.youtube.com/watch?v=9JhuOicPFZY), Portuguese and French.
+To give an example on how to implement i18n in a React application, MovieBrowser supports English, [Italian](https://www.youtube.com/watch?v=9JhuOicPFZY), Portuguese and French.
 
 This app adopts [React Intl](http://formatjs.io/react/), which is a solid library for this purpose.
 
@@ -187,18 +174,6 @@ For this purpose, I used webpack's `require.ensure()` to split `Intl` and locali
 They are used in [client.js](client.js) before mounting the app.
 
 > **Important**: since `react-intl` assumes `Intl` is already in the global scope, we can't import the fluxible app (which imports react-intl in some of its components) *before* polyfilling `Intl`. That's why you see in [client.js](src/client.js) `require("./app")` inside the in the `renderApp()` function, and not as `import` on the top of the file.
-
-### Internationalization, the flux way
-
-Lets talk about the data that `react-intl` needs to deliver translated content. Translated messages are saved in the [intl](src/intl) directory and shared between client and server using the [IntlStore](stores/IntlStore).
-
-This store listens to a `LOAD_INTL_SERVER` action dispatched by [IntlActionCreator](src/actions/IntlActionCreators.js). We execute this action **only server side** before rendering the `Html` component together with the usual `navigateAction`. This allows to dehydrate/rehydrate the store content.
-
-React-intl components need to have access to the `IntlStore`. Plus, since I'm using ES6 classes, I can't adopt the react-intl `Mixin` in my components. To solve this, I wrap the `Formatted*` components and make them available from [IntlComponents](src/utils/IntlComponents.js).
-
-### Sending the locale to the API
-
-While this is not required by the 500px API, we can send the current locale to the API so it can deliver localized content. This is made very easy by the Fetchr services, since they expose the `req` object: see for example the [photo service](src/services/photo.js).
 
 ## Development
 
@@ -246,7 +221,7 @@ The [.editorconfig](.editorconfig) file can be used with your IDE/editor to mant
 
 I use [eslint](http://eslint.org) with [babel-eslint](https://github.com/babel/babel-eslint) and the [react plugin](https://github.com/yannickcr/eslint-plugin-react). I also configured Sublime Text with [SublimeLinter-eslint](https://github.com/roadhump/SublimeLinter-eslint).
 
-I use the rules from my own [eslint-config-gpbl](https://github.com/gpbl/eslint-config-gpbl) shared configs.
+I use the rules from my own [eslint-config-jonathanconway](https://github.com/jonathanconway/eslint-config-jonathanconway) shared configs.
 
 ```bash
 npm run lint
@@ -259,8 +234,8 @@ I use [SublimeLinter-scss-lint](https://github.com/attenzione/SublimeLinter-scss
 The app uses [debug](https://www.npmjs.com/package/debug) to log debug messages. You can enable/disable the logging from Node by setting the `DEBUG` environment variable before running the server:
 
 ```bash
-# enable logging for isomorphic500 and Fluxible
-DEBUG=isomorphic500,Fluxible node index
+# enable logging for MovieBrowser and Fluxible
+DEBUG=MovieBrowser,Fluxible node index
 
 # disable logging
 DEBUG= node index
@@ -269,7 +244,7 @@ DEBUG= node index
 From the **browser**, you can enable/disable them by sending this command in the JavaScript console:
 
 ```js
-debug.enable('isomorphic500')
+debug.enable('MovieBrowser')
 debug.disable()
 // then, refresh!
 ```

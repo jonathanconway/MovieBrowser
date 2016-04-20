@@ -8,7 +8,7 @@ es6Promise.polyfill();
 
 window.debug = require("debug");
 
-const debug = window.debug("isomorphic500");
+const debug = window.debug("MovieBrowser");
 
 const mountNode = document.getElementById("content");
 const dehydratedState = window.__INITIAL_STATE__;

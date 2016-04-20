@@ -2,8 +2,8 @@ import { BaseStore } from "fluxible/addons";
 import Actions from "../constants/Actions";
 import IntlMessageFormat from "intl-messageformat";
 
-const SITE_NAME = "Isomorphic500";
-const BASE_URL = "http://isomorphic500.herokuapp.com";
+const SITE_NAME = "MovieBrowser";
+const BASE_URL = "http://MovieBrowser.herokuapp.com";
 
 /*
 This store listens to fluxible-router's actions and keep
