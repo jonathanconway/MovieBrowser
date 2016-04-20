@@ -1,19 +1,8 @@
 // Actions to run when the router matches a route. Used in app/routes.js
 
-import { loadFeaturedPhotos, loadPhoto } from "../actions/PhotoActionCreators";
 import { loadMovies } from "../actions/MoviesActionCreators";
 
 export default {
-
-  featuredPage(context, route, done) {
-    const feature = route.getIn(["params", "feature"]);
-    context.executeAction(loadFeaturedPhotos, { feature }, done);
-  },
-
-  photoPage(context, route, done) {
-    const id = route.getIn(["params", "id"]);
-    context.executeAction(loadPhoto, { id }, done);
-  },
 
   homePage(context, route, done) {
     const genre = route.getIn(["params", "genre"]);

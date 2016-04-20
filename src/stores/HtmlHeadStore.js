@@ -75,44 +75,7 @@ export default class HtmlHeadStore extends BaseStore {
   // Remember: route is an immutable object!
 
   handleNavigateSuccess(route) {
-
-    switch (route.get("name")) {
-
-    case "photo":
-
-      const id = route.getIn(["params", "id"]);
-
-      const store = this.dispatcher.getStore("PhotoStore");
-      const photo = store.get(id);
-
-      this.title = this.formatMessage("photo.documentTitle", {
-        name: photo.name,
-        user: photo.user.fullname
-      });
-
-      this.description = this.formatMessage("photo.documentDescription", {
-        name: photo.name,
-        user: photo.user.fullname
-      });
-
-      this.images = [photo.image_url];
-      break;
-
-    case "featured":
-      const feature = route.getIn(["params", "feature"]);
-      const featureName = this.formatMessage(`features.${feature}`);
-      this.title = this.formatMessage("featured.documentTitle", {
-        feature: featureName
-      });
-      break;
-
-    default:
-      // Just set the defaults
-      this.setInitialState();
-      break;
-
-    }
-
+    this.setInitialState();
     this.emitChange();
   }
 
