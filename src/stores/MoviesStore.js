@@ -34,12 +34,16 @@ export default class MoviesStore extends BaseStore {
 
   getGenres() {
     if (this.movies && this.movies.length) {
-      return this.movies.reduce(function (a, b) {
-        return a.genres.concat(
-          b.genres.filter(function (bb) {
-            return a.genres.indexOf(bb) === -1;
-          }));
-      });
+      return this.movies
+        .map((movie) => {
+          return movie.genres;
+        })
+        .reduce((genres1, genres2) => {
+          return genres1.concat(
+              genres2.filter((genres2item) => {
+                return genres1.indexOf(genres2item) === -1;
+              }));
+        });
     }
   }
 
