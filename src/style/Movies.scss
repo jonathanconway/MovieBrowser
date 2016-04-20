@@ -13,5 +13,9 @@
     &:first-child {
       width: 50%;
     }
+
+    .Movie-td-genre-current {
+      color: $color-secondary;
+    }
   }
 }

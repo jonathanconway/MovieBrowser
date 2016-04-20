@@ -9,16 +9,17 @@ export default class Movies extends Component {
 
   static propTypes = {
     movies: PropTypes.array.isRequired,
+    currentGenre: PropTypes.string
   }
 
   render() {
-    const { movies } = this.props;
+    const { movies, currentGenre } = this.props;
     return (
       <table className="MoviesCollection">
         <tbody>
             {
               movies.map(movie =>
-                <Movie movie={ movie } key={ movie.title } />
+                <Movie movie={ movie } key={ movie.title } currentGenre={ currentGenre } />
               )
             }
         </tbody>

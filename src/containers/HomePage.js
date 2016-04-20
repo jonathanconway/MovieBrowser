@@ -6,16 +6,20 @@ import { loadMovies } from "../actions/MoviesActionCreators";
 
 @connectToStores(["MoviesStore"], context => {
   const movies = context.getStore("MoviesStore").getMoviesByGenre();
+  const currentGenre = context.getStore("MoviesStore").getCurrentGenre();
   const genres = context.getStore("MoviesStore").getGenres();
   return {
     movies: movies || [],
-    genres: genres || []
+    genres: genres || [],
+    currentGenre: currentGenre || ''
   };
 })
 export default class HomePage extends Component {
 
   static propTypes = {
-    movies: PropTypes.array.isRequired
+    movies: PropTypes.array.isRequired,
+    genres: PropTypes.array.isRequired,
+    currentGenre: PropTypes.string
   }
 
   static contextTypes = {
@@ -27,13 +31,13 @@ export default class HomePage extends Component {
   }
 
   render() {
-    const { movies, genres } = this.props;
+    const { movies, genres, currentGenre } = this.props;
 
     return (
       <div>
         <GenreField genres={ genres } onChange={ this.handleGenreSelectChange.bind(this) } />
         <br /> <br />
-        <Movies movies={ movies } />
+        <Movies movies={ movies } currentGenre={ currentGenre } />
       </div>
     );
   }

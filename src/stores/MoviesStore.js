@@ -27,9 +27,13 @@ export default class MoviesStore extends BaseStore {
     if (this.genre) {
       return this.movies.filter((movie) => {
         return movie.genres.indexOf(this.genre) > -1;
-      });      
+      });
     }
     return this.movies;
+  }
+
+  getCurrentGenre() {
+    return this.genre;
   }
 
   getGenres() {
