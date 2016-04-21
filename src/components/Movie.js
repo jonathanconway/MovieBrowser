@@ -15,7 +15,12 @@ export default class Movie extends Component {
         <td className="Movie-td">
           {
             movie.genres.map((genre, index) =>
-              <span><span className={ genre === currentGenre && 'Movie-td-genre-current' }>{ genre }</span>{ ((index < (movie.genres.length - 1)) && ', ') }</span>
+              <span key={ genre }>
+                <span className={ genre === currentGenre && 'Movie-td-genre-current' }>
+                  { genre }
+                </span>
+                { ((index < (movie.genres.length - 1)) && ', ') }
+              </span>
             )
           }
         </td>

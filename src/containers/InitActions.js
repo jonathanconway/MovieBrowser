@@ -5,7 +5,8 @@ import { loadMovies } from "../actions/MoviesActionCreators";
 export default {
 
   homePage(context, route, done) {
-    const genre = route.getIn(["params", "genre"]);
+
+    const genre = route.params.genre;
     context.executeAction(loadMovies, { genre }, done);
   },
 

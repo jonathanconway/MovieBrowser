@@ -51,7 +51,7 @@ export default class HtmlHeadStore extends BaseStore {
     if (!route) {
       return BASE_URL;
     }
-    return `${BASE_URL}${route.get("url")}`;
+    return `${BASE_URL}${route.url}`;
   }
 
   getImages() {

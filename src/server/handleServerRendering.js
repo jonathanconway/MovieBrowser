@@ -2,6 +2,7 @@
 // to the client
 
 import React from "react";
+import ReactDOMServer from "react-dom/server";
 import serialize from "serialize-javascript";
 
 import app from "../app";
@@ -19,7 +20,7 @@ function renderApp(req, res, context, next) {
     const Root = app.getComponent();
 
     // Render the Root to string
-    const content = React.renderToString(
+    const content = ReactDOMServer.renderToString(
       <Root context={ context.getComponentContext() } />
     );
 
