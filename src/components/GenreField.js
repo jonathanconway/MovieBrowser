@@ -17,7 +17,7 @@ export default class GenreField extends Component {
     const { genres, onChange } = this.props;
     return (
       <div className="GenreField">
-        <label className="GenreField-label" for="genre-select">
+        <label className="GenreField-label" htmlFor="genre-select">
           <FormattedMessage message="home.genreTitle" />
         </label>
         <GenreSelect id="genre-select" onChange={ this.props.onChange } genres={ this.props.genres } />
