@@ -65,6 +65,7 @@ then open [localhost:8080](http://localhost:8080).
   * [.editorconfig](#editorconfig)
   * [Linting](#linting)
   * [Debugging](#debugging)
+* [Testing](#testing)
 
 ## Application structure
 
@@ -248,3 +249,11 @@ debug.enable('MovieBrowser')
 debug.disable()
 // then, refresh!
 ```
+
+## Testing
+
+Unit testing is done with [Mocha](https://github.com/mochajs/mocha), with [Sinon](https://github.com/sinonjs/sinon) used for spies and [React Test Utils](https://facebook.github.io/react/docs/test-utils.html) used to test React components.
+
+Not all components have been unit-tested, due to time-constraints.
+
+In a production scenario, I would measure test coverage and ensure that at least 90% coverage was achieved.
