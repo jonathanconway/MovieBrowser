@@ -88,7 +88,6 @@ then open [localhost:8080](http://localhost:8080).
 │   │   ├── ...
 │   │   ├── Html.js     # Used to render the <html> document server-side
 │   │   └── Root.js     # Root component
-
 │   ├── intl            # Contains the messages for i18n
 │   ├── server          # Server-side only code
 │   │   ├── ga.js              # Google Analytics script
@@ -109,6 +108,7 @@ then open [localhost:8080](http://localhost:8080).
 │   ├── assets         # Static files
 │   ├── json           # JSON data file (in future, could utilise a web-service rather than JSON)
 │   └── dist           # Output files for webpack on production
+├── tests              # Unit tests with Mocha and Sinon
 └── webpack
     ├── dev.config.js  # Webpack config for development
     ├── prod.config.js # Webpack config for building the production files
